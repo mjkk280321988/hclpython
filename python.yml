@@ -13,7 +13,7 @@ jobs:
       AWS_CONFIG_FILE: .github/workflows/aws_config
 
       # Option 2: set environment variables
-      AWS_ROLE_ARN: arn:aws:iam::539935451710:role/hackathon-lambda-execution-role
+      AWS_ROLE_ARN: arn:aws:iam::539935451710:role/aws-iam-lambda
       AWS_WEB_IDENTITY_TOKEN_SERVER: GitHub
       AWS_ROLE_SESSION_NAME: UsingEnvVar # Not required!
     steps:
@@ -25,7 +25,7 @@ jobs:
           python-version: 3
       - name: install
         run: |
-          pip install boto3 requests pyjwt
+          pip install boto3 requests pillow
       - name: run
         run: |
           python .github/workflows/lambda_function.py

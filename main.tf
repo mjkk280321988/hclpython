@@ -24,14 +24,14 @@ resource "aws_iam_role" "lambda_exec_role" {
   })
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
-  role       = aws_iam_role.hackathon-lambda-execution-role.name
-  policy_arn = "arn:aws:iam::539935451710:role/hackathon-lambda-execution-role"
+resource "aws_iam_role_policy_attachment" "aws-iam-lambda" {
+  role       = aws_iam_role.aws-iam-lambda.name
+  policy_arn = "arn:aws:iam::539935451710:role/aws-iam-lambda"
 }
 
 resource "aws_lambda_function" "image_processor" {
   function_name = "image-devops"
-  role          = aws_iam_role.hackathon-lambda-execution-role.name.arn
+  role          = aws_iam_role.aws-iam-lambda.arn
   handler       = "lambda_function.lambda_handler"
   runtime       = "python3.9"
   filename      = "lambda.zip"
@@ -62,6 +62,4 @@ resource "aws_lambda_permission" "allow_s3" {
   function_name = aws_lambda_function.image_processor.image-devops
   principal     = "s3.amazonaws.com"
   source_arn    = aws_s3_bucket.aws-s3-devops-input.arn
-}
-
 }
