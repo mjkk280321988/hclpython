@@ -8,9 +8,9 @@ terraform {
   backend "s3" {
   
     bucket         	   = "hcl-hackathon-terraform-state"
-    key                = "terraform.tfstate"
+    key                = "key/terraform.tfstate"
     region         	   = "us-east-1"
     encrypt        	   = true
   }
-  required_version = ">= 1.6.0"
+  required_version = ">= 1.9.8"
 }
