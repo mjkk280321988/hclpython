@@ -38,7 +38,7 @@ resource "aws_lambda_function" "image_processor" {
   source_code_hash = filebase64sha256("lambda.zip")
   environment {
     variables = {
-      OUTPUT_BUCKET = aws_s3_bucket.aws-s3-devops-output.bucket
+      OUTPUT_BUCKET = aws_s3_bucket.aws-s3-devops-input.bucket
     }
   }
 }
